@@ -1,4 +1,4 @@
-FROM webreactor/ubuntu
+FROM webreactor/ubuntu:14.04
 
 ENV MYSQL_VERSION 5.5
 ENV DEBIAN_FRONTEND noninteractive
