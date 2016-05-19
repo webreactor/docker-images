@@ -6,7 +6,7 @@ WORKDIR /opt/nginx-php-nxlog
 EXPOSE 80 443
 CMD ["./start.sh"]
 
-RUN curl -k -L http://toolbox.fctechno.com/webdav/deb/nxlog-ce_2.9.1347_ubuntu_1404_amd64.deb -o nxlog.deb; \
+RUN curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1504_ubuntu_1404_amd64.deb -o nxlog.deb; \
     dpkg -i nxlog.deb; \
     apt-get -f -y install
 
