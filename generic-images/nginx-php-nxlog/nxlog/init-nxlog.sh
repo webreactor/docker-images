@@ -2,6 +2,10 @@
 
 env | grep -v :container | sed -n -r 's/(\w+)=(.+)/define ENV_\1 \2/p' > "/etc/nxlog/env.conf"
 
+if [ -n "$DISABLE_DOCKER_LOG" ]; then
+    rm /etc/nxlog/conf.d/docker-log.conf
+fi
+
 if [ -n "$JSON_LOG_SERVER_HOST" ]; then
 
 JSON_LOG_SERVER_PORT=${JSON_LOG_SERVER_PORT:-5000}
