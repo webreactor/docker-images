@@ -1,4 +1,4 @@
-IMAGE_NAME=webreactor/nginx-php
+IMAGE_NAME=webreactor/nginx-php-nxlog
 IMAGE_TAG=0.0.1
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<patterndb>
+ <created>2016-02-19 01:02:03</created>
+ <version>42</version>
+
+ <group>
+   <name>nginx</name>
+   <id>1</id>
+   <matchfield>
+    <name>SourceName</name>
+    <type>exact</type>
+    <value>nginx</value>
+   </matchfield>
+
+   <pattern>
+    <id>1</id>
+    <name>nginx-access</name>
+
+    <matchfield>
+     <name>Message</name>
+     <type>regexp</type>
+     <value>^(\S+) - (\S+) \[[^\]]+\] \"(\S+) (.+) HTTP.\d\.\d\" (\d+) (\d+) ([\d\.]+) \"([^\"]+)\" \"([^\"]+)\"</value>
+     <capturedfield><name>ClientIP</name><type>string</type></capturedfield>
+     <capturedfield><name>RemoteUser</name><type>string</type></capturedfield>
+     <capturedfield><name>HTTPMethod</name><type>string</type></capturedfield>
+     <capturedfield><name>URL</name><type>string</type></capturedfield>
+     <capturedfield><name>HTTPStatus</name><type>string</type></capturedfield>
+     <capturedfield><name>BytesSent</name><type>string</type></capturedfield>
+     <capturedfield><name>RequestTime</name><type>string</type></capturedfield>
+     <capturedfield><name>Referer</name><type>string</type></capturedfield>
+     <capturedfield><name>UserAgent</name><type>string</type></capturedfield>
+    </matchfield>
+   </pattern>
+
+   <pattern>
+    <id>2</id>
+    <name>nginx-error</name>
+
+    <matchfield>
+     <name>Severity</name>
+     <type>exact</type>
+     <value>ERROR</value>
+    </matchfield>
+
+    <matchfield>
+     <name>Message</name>
+     <type>regexp</type>
+     <value>, client: (\S+), server: \S+, request: \"(\S+) (.+) HTTP.\d\.\d\",.* host: \"(\S+)\"$</value>
+     <capturedfield><name>ClientIP</name><type>string</type></capturedfield>
+     <capturedfield><name>HTTPMethod</name><type>string</type></capturedfield>
+     <capturedfield><name>URL</name><type>string</type></capturedfield>
+     <capturedfield><name>HTTPHost</name><type>string</type></capturedfield>
+    </matchfield>
+
+    <exec>
+        if $Message =~ /PHP/ $SourceName="php-fpm";
+    </exec>
+
+   </pattern>
+
+ </group>
+
+</patterndb>
