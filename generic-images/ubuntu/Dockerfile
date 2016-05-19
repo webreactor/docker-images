@@ -10,4 +10,6 @@ RUN apt-get install -y \
     curl \
     wget \
     vim \
-    ca-certificates
+    ca-certificates \
+    supervisor \
+    software-properties-common
