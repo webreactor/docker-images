@@ -1,5 +1,5 @@
 IMAGE_NAME=webreactor/ubuntu
-IMAGE_TAG=14.04
+IMAGE_TAG=14.04.03
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:
