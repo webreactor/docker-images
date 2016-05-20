@@ -1,4 +1,4 @@
-FROM docker-registry.private.srvcam.com:5000/common/nginx-php-nxlog:v0.0.10
+FROM webreactor/nginx-php-nxlog
 MAINTAINER Blue Team <blueteam@featurecreeptechnology.com>
 WORKDIR /opt/elk
 CMD start.sh
