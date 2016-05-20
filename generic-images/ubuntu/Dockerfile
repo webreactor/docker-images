@@ -12,4 +12,5 @@ RUN apt-get install -y \
     vim \
     ca-certificates \
     supervisor \
-    software-properties-common
+    software-properties-common \
+    make
