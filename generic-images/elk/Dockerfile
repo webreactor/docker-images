@@ -1,7 +1,16 @@
 FROM webreactor/nginx-php-nxlog:v0.0.1
 MAINTAINER Maxim Popov <ad@zalil.ru>
+
 WORKDIR /opt/elk
-CMD start.sh
+CMD ./start.sh
+
+EXPOSE 10001 5601 9200
+VOLUME /var/lib/elasticsearch/data
+
+# Configs:
+# /opt/elk/elasticsearch.yml
+# /opt/elk/kibana.yml
+# /opt/elk/logstash.conf
 
 ENV GOSU_VERSION 1.7
 RUN set -x \
@@ -29,8 +38,8 @@ RUN cd /opt \
     && curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.3/elasticsearch-2.3.3.tar.gz \
     && cd /opt && tar -xzf elasticsearch-2.3.3.tar.gz \
     && rm elasticsearch-2.3.3.tar.gz \
-    && ln -s elasticsearch-2.3.3 elasticsearch
-    
+    && ln -s elasticsearch-2.3.3 elasticsearch \
+    && chown nobody -R /opt/elasticsearch/
 
 RUN cd /opt \
     && curl -O https://download.elastic.co/kibana/kibana/kibana-5.0.0-alpha2-linux-x64.tar.gz \
@@ -44,8 +53,6 @@ RUN cd /opt \
     && rm kibana-4.5.1-linux-x64.tar.gz \
     && ln -s kibana-4.5.1-linux-x64 kibana-4
 
-RUN chown nobody -R /opt/elasticsearch/
-
 ADD . /opt/elk
 
-
+RUN cp /opt/elk/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
