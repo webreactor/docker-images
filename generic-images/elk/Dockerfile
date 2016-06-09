@@ -1,4 +1,4 @@
-FROM webreactor/nginx-php-nxlog
+FROM webreactor/nginx-php-nxlog:v0.0.1
 MAINTAINER Maxim Popov <ad@zalil.ru>
 WORKDIR /opt/elk
 CMD start.sh
