@@ -1,5 +1,5 @@
 FROM webreactor/nginx-php-nxlog
-MAINTAINER Blue Team <blueteam@featurecreeptechnology.com>
+MAINTAINER Maxim Popov <ad@zalil.ru>
 WORKDIR /opt/elk
 CMD start.sh
 
