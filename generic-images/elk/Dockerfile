@@ -8,9 +8,9 @@ EXPOSE 10001 5601 9200
 VOLUME /var/lib/elasticsearch/data
 
 # Configs:
-# /opt/elk/elasticsearch.yml
-# /opt/elk/kibana.yml
-# /opt/elk/logstash.conf
+# /opt/elasticsearch/config/elasticsearch.yml
+# /opt/elk/kibana/kibana.yml
+# /opt/elk/logstash/logstash.conf
 
 ENV GOSU_VERSION 1.7
 RUN set -x \
@@ -55,4 +55,4 @@ RUN cd /opt \
 
 ADD . /opt/elk
 
-RUN cp /opt/elk/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
+RUN cp /opt/elk/elasticsearch/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
