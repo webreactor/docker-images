@@ -6,7 +6,7 @@ WORKDIR /opt/nginx-php-nxlog
 EXPOSE 80 443
 CMD ["./start.sh"]
 
-RUN curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1504_ubuntu_1404_amd64.deb -o nxlog.deb; \
+RUN curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubuntu_1404_amd64.deb -o nxlog.deb; \
     dpkg -i nxlog.deb; \
     apt-get -f -y install
 
@@ -40,10 +40,11 @@ RUN cd /tmp \
     && php -r "readfile('https://getcomposer.org/installer');" | php \
     && mv composer.phar /usr/bin/composer
 
-
 COPY . /opt/nginx-php-nxlog
 
 ADD . /opt/nginx-php-nxlog
+
+CMD [ "bash", "-c", "/opt/nginx-php-nxlog/start.sh" ]
 
 # Install Nginx, nxlog and PHP FPM configs
 RUN mkdir -p /var/www/ \

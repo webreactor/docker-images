@@ -22,4 +22,3 @@ JSON_LOG_SERVER_LOG_TYPE=${JSON_LOG_SERVER_LOG_TYPE:-docker}
         /etc/nxlog/json-server.conf.tpl > /etc/nxlog/conf.d/json-server.conf
 fi
 
-nxlog
