@@ -32,15 +32,16 @@ RUN add-apt-repository ppa:ondrej/php5 \
     php5-imagick \
     php5-mysql \
     php5-sqlite
-    
+
+RUN apt-get -y update \
+    && apt-get -y install mysql-client
+
 RUN cd /tmp \
     && php -r "readfile('https://getcomposer.org/installer');" | php \
     && mv composer.phar /usr/bin/composer
 
 
 COPY . /opt/nginx-php-nxlog
-
-CMD /opt/nginx-php-nxlog/start.sh
 
 ADD . /opt/nginx-php-nxlog
 
@@ -55,8 +56,8 @@ RUN mkdir -p /var/www/ \
     && cp /opt/nginx-php-nxlog/php/www.conf          /etc/php5/fpm/pool.d/www.conf \
     && cp /opt/nginx-php-nxlog/php/php.ini           /etc/php5/cli/php.ini \
     && sed -i 's/error_log/;error_log/g'                 /etc/php5/fpm/php.ini \
-    && cp /opt/nginx-php-nxlog/nxlog/nxlog.conf      /etc/nxlog/nxlog.conf \
     && mkdir -p /etc/nxlog/conf.d/ \
+    && cp /opt/nginx-php-nxlog/nxlog/nxlog.conf      /etc/nxlog/nxlog.conf \
     && cp /opt/nginx-php-nxlog/nxlog/json-server.conf.tpl /etc/nxlog/json-server.conf.tpl \
     && cp /opt/nginx-php-nxlog/nxlog/docker-log.conf /etc/nxlog/conf.d/docker-log.conf \
     && cp /opt/nginx-php-nxlog/nxlog/patterndb.xml   /etc/nxlog/patterndb.xml
