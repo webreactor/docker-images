@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+. /opt/base-image/init-nxlog.sh
+
 chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -f /usr/share/mysql/my-default.cnf ] ; then

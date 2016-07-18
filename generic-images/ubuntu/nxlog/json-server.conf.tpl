@@ -1,7 +1,7 @@
 
 <Processor pdb-json-server>
     Module      pm_pattern
-    PatternFile /etc/nxlog/patterndb.xml
+    PatternFile /etc/nxlog/patterndb/patterndb.xml
 </Processor>
 
 <Output json-server>

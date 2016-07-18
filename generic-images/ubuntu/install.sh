@@ -23,6 +23,13 @@ curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubun
 dpkg -i nxlog.deb
 apt-get -f -y install
 
+mkdir -p /etc/nxlog/conf.d/ /etc/nxlog/patterndb/
+cp /opt/base-image/nxlog/nxlog.conf      /etc/nxlog/nxlog.conf
+cp /opt/base-image/nxlog/json-server.conf.tpl /etc/nxlog/json-server.conf.tpl
+cp /opt/base-image/nxlog/docker-log.conf /etc/nxlog/conf.d/docker-log.conf
+cp /opt/base-image/nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
+
+
 curl -L https://raw.githubusercontent.com/webreactor/wait-for-service/master/wait-for-service > /usr/local/bin/wait-for-service
 chmod a+x /usr/local/bin/wait-for-service
 
