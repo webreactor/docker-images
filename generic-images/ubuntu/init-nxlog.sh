@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+MARATHON_APP_ID=${MARATHON_APP_ID:-false} \
+PRETTY_LOG=${PRETTY_LOG:-false} \
+DISABLE_INFO=${DISABLE_INFO:-false} \
 env | grep -v :container | sed -n -r 's/(\w+)=(.+)/define ENV_\1 \2/p' > "/etc/nxlog/env.conf"
 
 if [ -n "$DISABLE_DOCKER_LOG" ]; then
