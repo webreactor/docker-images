@@ -11,5 +11,3 @@ push:
 	docker push $(IMAGE_FULL_NAME)
 	docker push $(IMAGE_NAME):latest
 
-#deploy:
-#	marathon-deploy $(IMAGE_TAG)

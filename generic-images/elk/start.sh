@@ -2,5 +2,6 @@
 
 chmod a+w -R /var/lib/elasticsearch/data
 
-/usr/bin/supervisord -n -c /opt/elk/supervisord.conf
+/opt/elk/elastic-init.sh &
 
+/usr/bin/supervisord -n -c /opt/elk/supervisord.conf

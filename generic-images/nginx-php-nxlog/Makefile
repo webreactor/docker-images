@@ -1,5 +1,5 @@
 IMAGE_NAME=webreactor/nginx-php-nxlog
-IMAGE_TAG=v0.0.1
+IMAGE_TAG=v0.0.2
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:

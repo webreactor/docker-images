@@ -1,16 +1,9 @@
 FROM ubuntu:14.04
 
+RUN sudo locale-gen en_US.UTF-8 && sudo update-locale LANG=en_US.UTF-8
+
 ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 TERM=xterm
-RUN locale-gen $LC_ALL
 
-RUN apt-get update
+ADD . /opt/base-image/
 
-RUN apt-get install -y \
-    git \
-    curl \
-    wget \
-    vim \
-    ca-certificates \
-    supervisor \
-    software-properties-common \
-    make
+RUN /opt/base-image/install.sh

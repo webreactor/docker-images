@@ -1,5 +1,5 @@
 IMAGE_NAME=webreactor/elk
-IMAGE_TAG=v0.0.3
+IMAGE_TAG=v0.0.2
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:
