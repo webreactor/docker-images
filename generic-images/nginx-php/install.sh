@@ -39,11 +39,11 @@ cp /opt/nginx-php/php/index.php /var/www/
 rm -f /etc/nginx/sites-enabled/*
 cp /opt/nginx-php/nginx/default         /etc/nginx/sites-enabled/default
 cp /opt/nginx-php/nginx/nginx.conf      /etc/nginx/nginx.conf
-cp /opt/nginx-php/php/php.ini           /etc/php5/fpm/php.ini
-cp /opt/nginx-php/php/php-fpm.conf      /etc/php5/fpm/php-fpm.conf
-cp /opt/nginx-php/php/www.conf          /etc/php5/fpm/pool.d/www.conf
-cp /opt/nginx-php/php/php.ini           /etc/php5/cli/php.ini
-sed -i 's/error_log/;error_log/g'             /etc/php5/fpm/php.ini
+cp /opt/nginx-php/php/php.ini           /etc/php/php5.6/fpm/php.ini
+cp /opt/nginx-php/php/php-fpm.conf      /etc/php/php5.6/fpm/php-fpm.conf
+cp /opt/nginx-php/php/www.conf          /etc/php/php5.6/fpm/pool.d/www.conf
+cp /opt/nginx-php/php/php.ini           /etc/php/php5.6/cli/php.ini
+sed -i 's/error_log/;error_log/g'             /etc/php/php5.6/fpm/php.ini
 cp /opt/nginx-php/nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
 
 /opt/base-image/cleanup.sh
