@@ -6,7 +6,7 @@ locale-gen $LC_ALL
 
 apt-get update
 
-apt-get install -y \
+apt-get install -y --no-install-recommends \
     git \
     curl \
     wget \
@@ -16,7 +16,7 @@ apt-get install -y \
     software-properties-common \
     make
 
-apt-get install -y \
+apt-get install -y --no-install-recommends \
     libapr1 libdbi1 libperl5.18
 
 curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubuntu_1404_amd64.deb -o nxlog.deb
