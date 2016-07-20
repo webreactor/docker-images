@@ -29,7 +29,7 @@ cd /tmp
 php -r "readfile('https://getcomposer.org/installer');" | php
 mv composer.phar /usr/bin/composer
 
-curl -L https://github.com/webreactor/db-migration/releases/download/1.0.1/db-migration > /usr/local/bin/db-migration
+curl -L https://github.com/webreactor/db-migration/releases/download/1.0.2/db-migration > /usr/local/bin/db-migration
 chmod a+x /usr/local/bin/db-migration
 
 
