@@ -1,6 +1,8 @@
-$!/bin/bash
+#!/bin/bash
 
-set -e
+set -e -v
+
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 add-apt-repository -y ppa:nginx/development
 add-apt-repository -y ppa:ondrej/php
@@ -25,7 +27,6 @@ apt-get install -y --no-install-recommends \
     php5-redis \
     mysql-client
 
-cd /tmp
 php -r "readfile('https://getcomposer.org/installer');" | php
 mv composer.phar /usr/bin/composer
 
@@ -35,15 +36,18 @@ chmod a+x /usr/local/bin/db-migration
 
 # Install Nginx, nxlog and PHP FPM configs
 mkdir -p /var/www/
-cp /opt/nginx-php/php/index.php /var/www/
+cp ./php/index.php /var/www/
 rm -f /etc/nginx/sites-enabled/*
-cp /opt/nginx-php/nginx/default         /etc/nginx/sites-enabled/default
-cp /opt/nginx-php/nginx/nginx.conf      /etc/nginx/nginx.conf
-cp /opt/nginx-php/php/php.ini           /etc/php5/fpm/php.ini
-cp /opt/nginx-php/php/php-fpm.conf      /etc/php5/fpm/php-fpm.conf
-cp /opt/nginx-php/php/www.conf          /etc/php5/fpm/pool.d/www.conf
-cp /opt/nginx-php/php/php.ini           /etc/php5/cli/php.ini
+cp ./nginx/default         /etc/nginx/sites-enabled/default
+cp ./nginx/nginx.conf      /etc/nginx/nginx.conf
+cp ./php/php.ini           /etc/php5/fpm/php.ini
+cp ./php/php-fpm.conf      /etc/php5/fpm/php-fpm.conf
+cp ./php/www.conf          /etc/php5/fpm/pool.d/www.conf
+cp ./php/php.ini           /etc/php5/cli/php.ini
 sed -i 's/error_log/;error_log/g'             /etc/php5/fpm/php.ini
-cp /opt/nginx-php/nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
+cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
 
-/opt/base-image/cleanup.sh
+cp ./php/start-php-fpm /usr/local/bin
+cp ./start-nginx-php-nxlog /usr/local/bin
+
+docker-image-cleanup

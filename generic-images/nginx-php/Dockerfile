@@ -2,9 +2,9 @@ FROM webreactor/ubuntu:14.04.03
 
 # htdocs folder: /var/www
 
-WORKDIR /opt/nginx-php
+WORKDIR /var/www
 EXPOSE 80 443
-CMD "/opt/nginx-php/start.sh"
+CMD "start-nginx-php-nxlog"
 
 ADD . /opt/nginx-php
 

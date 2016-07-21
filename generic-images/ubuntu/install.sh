@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -e
+set -e -v
+
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 locale-gen $LC_ALL
 
@@ -24,13 +26,16 @@ dpkg -i nxlog.deb
 apt-get -f -y install
 
 mkdir -p /etc/nxlog/conf.d/ /etc/nxlog/patterndb/
-cp /opt/base-image/nxlog/nxlog.conf      /etc/nxlog/nxlog.conf
-cp /opt/base-image/nxlog/json-server.conf.tpl /etc/nxlog/json-server.conf.tpl
-cp /opt/base-image/nxlog/docker-log.conf /etc/nxlog/conf.d/docker-log.conf
-cp /opt/base-image/nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
-
+cp ./nxlog/nxlog.conf      /etc/nxlog/nxlog.conf
+cp ./nxlog/json-server.conf.tpl /etc/nxlog/json-server.conf.tpl
+cp ./nxlog/docker-log.conf /etc/nxlog/conf.d/docker-log.conf
+cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
+cp ./nxlog/start-nxlog /usr/local/bin/
 
 curl -L https://raw.githubusercontent.com/webreactor/wait-for-service/master/wait-for-service > /usr/local/bin/wait-for-service
 chmod a+x /usr/local/bin/wait-for-service
 
-/opt/base-image/cleanup.sh
+cp ./docker-image-cleanup /usr/local/bin/
+cp ./nxlog/start-nxlog /usr/local/bin/
+
+docker-image-cleanup

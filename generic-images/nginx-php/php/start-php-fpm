@@ -1,0 +1,5 @@
+#!/bin/bash
+
+php /opt/nginx-php/php/add-env-to-php-fpm.php > /tmp/www-pool-env.conf
+
+php5-fpm $@

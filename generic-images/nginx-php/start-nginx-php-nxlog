@@ -1,0 +1,7 @@
+#!/bin/bash
+
+start-php-fpm
+
+nginx
+
+start-nxlog -f
