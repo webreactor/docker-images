@@ -10,21 +10,23 @@ add-apt-repository -y ppa:ondrej/php
 apt-get -y update
 apt-get install -y --no-install-recommends \
     nginx \
-    php5-fpm \
-    php5-cli \
-    php5-curl \
-    php5-mysql \
+    php5.6-fpm \
+    php5.6-cli \
+    php5.6-curl \
+    php5.6-mysql \
     php-memcache \
     php-memcached \
-    php5-mcrypt \
-    php5-json \
-    php5-curl \
-    php5-intl \
-    php5-imap \
-    php5-gd \
-    php5-imagick \
-    php5-sqlite \
-    php5-redis \
+    php5.6-mcrypt \
+    php5.6-bcmath \
+    php5.6-mbstring \
+    php5.6-json \
+    php5.6-curl \
+    php5.6-intl \
+    php5.6-imap \
+    php5.6-gd \
+    php5.6-imagick \
+    php5.6-sqlite \
+    php5.6-redis \
     mysql-client
 
 php -r "readfile('https://getcomposer.org/installer');" | php
@@ -35,16 +37,16 @@ chmod a+x /usr/local/bin/db-migration
 
 
 # Install Nginx, nxlog and PHP FPM configs
-mkdir -p /var/www/
+mkdir -p /var/www/ /run/php/
 cp ./php/index.php /var/www/
 rm -f /etc/nginx/sites-enabled/*
 cp ./nginx/default         /etc/nginx/sites-enabled/default
 cp ./nginx/nginx.conf      /etc/nginx/nginx.conf
-cp ./php/php.ini           /etc/php5/fpm/php.ini
-cp ./php/php-fpm.conf      /etc/php5/fpm/php-fpm.conf
-cp ./php/www.conf          /etc/php5/fpm/pool.d/www.conf
-cp ./php/php.ini           /etc/php5/cli/php.ini
-sed -i 's/error_log/;error_log/g'             /etc/php5/fpm/php.ini
+
+cp ./php/owerride*.ini     /etc/php/5.6/mods-available/
+cp ./php/www.conf          /etc/php/5.6/fpm/pool.d/www.conf
+phpenmod -s cli owerride-php-cli
+
 cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
 
 cp ./php/start-php-fpm /usr/local/bin
