@@ -23,6 +23,7 @@ apt-get install -y --no-install-recommends \
     php5.6-curl \
     php5.6-intl \
     php5.6-imap \
+    php5.6-xml \
     php5.6-gd \
     php5.6-imagick \
     php5.6-sqlite \
