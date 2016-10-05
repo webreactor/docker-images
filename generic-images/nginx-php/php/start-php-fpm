@@ -2,4 +2,4 @@
 
 php /opt/nginx-php/php/add-env-to-php-fpm.php > /tmp/www-pool-env.conf
 
-php-fpm5.6 $@
+php-fpm5.5 $@
