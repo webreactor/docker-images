@@ -10,24 +10,24 @@ add-apt-repository -y ppa:ondrej/php
 apt-get -y update
 apt-get install -y --no-install-recommends \
     nginx \
-    php5.6-fpm \
-    php5.6-cli \
-    php5.6-curl \
-    php5.6-mysql \
+    php5.5-fpm \
+    php5.5-cli \
+    php5.5-curl \
+    php5.5-mysql \
     php-memcache \
     php-memcached \
-    php5.6-mcrypt \
-    php5.6-bcmath \
-    php5.6-mbstring \
-    php5.6-json \
-    php5.6-curl \
-    php5.6-intl \
-    php5.6-imap \
-    php5.6-xml \
-    php5.6-gd \
-    php5.6-imagick \
-    php5.6-sqlite \
-    php5.6-redis \
+    php5.5-mcrypt \
+    php5.5-bcmath \
+    php5.5-mbstring \
+    php5.5-json \
+    php5.5-curl \
+    php5.5-intl \
+    php5.5-imap \
+    php5.5-xml \
+    php5.5-gd \
+    php5.5-imagick \
+    php5.5-sqlite \
+    php5.5-redis \
     mysql-client
 
 php -r "readfile('https://getcomposer.org/installer');" | php
@@ -44,8 +44,8 @@ rm -f /etc/nginx/sites-enabled/*
 cp ./nginx/default         /etc/nginx/sites-enabled/default
 cp ./nginx/nginx.conf      /etc/nginx/nginx.conf
 
-cp ./php/owerride*.ini     /etc/php/5.6/mods-available/
-cp ./php/www.conf          /etc/php/5.6/fpm/pool.d/www.conf
+cp ./php/owerride*.ini     /etc/php/5.5/mods-available/
+cp ./php/www.conf          /etc/php/5.5/fpm/pool.d/www.conf
 phpenmod -s cli owerride-php-cli
 
 cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
