@@ -16,3 +16,5 @@ RUN curl -L https://github.com/webreactor/db-migration/releases/download/1.0.1/d
     && chmod a+x /usr/local/bin/db-migration
 
 ADD . /opt/mysql
+
+RUN cp /opt/mysql/my.cfg /etc/mysql/my.cnf
