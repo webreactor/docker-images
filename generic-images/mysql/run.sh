@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-. /opt/base-image/init-nxlog.sh
+start-nxlog
 
 chown -R mysql:mysql /var/lib/mysql
 
