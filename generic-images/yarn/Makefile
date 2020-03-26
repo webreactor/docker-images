@@ -1,5 +1,5 @@
-IMAGE_NAME=webreactor/nginx-php
-IMAGE_TAG=v0.0.3
+IMAGE_NAME=webreactor/yarn
+IMAGE_TAG=v0.0.1
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:
@@ -8,4 +8,5 @@ build:
 
 push:
 	docker push $(IMAGE)
-	docker push $(IMAGE_NAME):latest
+	# docker push $(IMAGE_NAME):latest
+

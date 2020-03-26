@@ -4,30 +4,46 @@ set -e -v
 
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+locale-gen $LC_ALL
+
+apt-get update
+
+apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    wget \
+    vim \
+    ca-certificates \
+    software-properties-common \
+    make
+
+
+
+
 add-apt-repository -y ppa:nginx/development
 add-apt-repository -y ppa:ondrej/php
 
 apt-get -y update
 apt-get install -y --no-install-recommends \
     nginx \
-    php5.6-fpm \
-    php5.6-cli \
-    php5.6-curl \
-    php5.6-mysql \
+    php7.2-fpm \
+    php7.2-cli \
+    php7.2-curl \
+    php7.2-mysql \
     php-memcache \
     php-memcached \
-    php5.6-mcrypt \
-    php5.6-bcmath \
-    php5.6-mbstring \
-    php5.6-json \
-    php5.6-curl \
-    php5.6-intl \
-    php5.6-imap \
-    php5.6-xml \
-    php5.6-gd \
-    php5.6-imagick \
-    php5.6-sqlite \
-    php5.6-redis \
+    php7.2-mcrypt \
+    php7.2-bcmath \
+    php7.2-mbstring \
+    php7.2-json \
+    php7.2-curl \
+    php7.2-intl \
+    php7.2-imap \
+    php7.2-xml \
+    php7.2-gd \
+    php7.2-imagick \
+    php7.2-sqlite \
+    php7.2-redis \
     mysql-client
 
 php -r "readfile('https://getcomposer.org/installer');" | php
@@ -53,4 +69,4 @@ cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
 cp ./php/start-php-fpm /usr/local/bin
 cp ./start-nginx-php-nxlog /usr/local/bin
 
-docker-image-cleanup
+apt-get clean
