@@ -1,5 +1,5 @@
 IMAGE_NAME=webreactor/nginx-php
-IMAGE_TAG=v0.0.3
+IMAGE_TAG=v0.0.4
 IMAGE=$(IMAGE_NAME):$(IMAGE_TAG)
 
 build:

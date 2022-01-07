@@ -16,20 +16,19 @@ apt-get install -y --no-install-recommends \
     ca-certificates \
     supervisor \
     software-properties-common \
-    make
+    make \
+    less \
+    netcat \
+    python
 
 apt-get install -y --no-install-recommends \
-    libapr1 libdbi1 libperl5.18
+    libapr1 libdbi1 libperl5.30
 
-curl -k -L https://nxlog.co/system/files/products/files/1/nxlog-ce_2.9.1716_ubuntu_1404_amd64.deb -o nxlog.deb
-dpkg -i nxlog.deb
-apt-get -f -y install
-
-mkdir -p /etc/nxlog/conf.d/ /etc/nxlog/patterndb/
-cp ./nxlog/nxlog.conf      /etc/nxlog/nxlog.conf
-cp ./nxlog/json-server.conf.tpl /etc/nxlog/json-server.conf.tpl
-cp ./nxlog/docker-log.conf /etc/nxlog/conf.d/docker-log.conf
-cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
+mkdir -p /usr/local/etc/nxlog/conf.d/ /usr/local/etc/nxlog/patterndb/
+cp ./nxlog/nxlog.conf      /usr/local/etc/nxlog/nxlog.conf
+cp ./nxlog/json-server.conf.tpl /usr/local/etc/nxlog/json-server.conf.tpl
+cp ./nxlog/docker-log.conf /usr/local/etc/nxlog/conf.d/docker-log.conf
+cp ./nxlog/patterndb.xml   /usr/local/etc/nxlog/patterndb/patterndb.xml
 cp ./nxlog/start-nxlog /usr/local/bin/
 
 curl -L https://raw.githubusercontent.com/webreactor/wait-for-service/master/wait-for-service > /usr/local/bin/wait-for-service

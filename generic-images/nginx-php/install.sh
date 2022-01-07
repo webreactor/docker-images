@@ -4,27 +4,10 @@ set -e -v
 
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-locale-gen $LC_ALL
-
-apt-get update
-
-apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    wget \
-    vim \
-    ca-certificates \
-    software-properties-common \
-    make
-
-
-
-
-add-apt-repository -y ppa:nginx/development
+#add-apt-repository -y ppa:nginx/development
 add-apt-repository -y ppa:ondrej/php
 
-apt-get -y update
-apt-get install -y --no-install-recommends \
+apt-get -y update && apt-get install -y --no-install-recommends \
     nginx \
     php7.2-fpm \
     php7.2-cli \
@@ -49,6 +32,9 @@ apt-get install -y --no-install-recommends \
 php -r "readfile('https://getcomposer.org/installer');" | php
 mv composer.phar /usr/bin/composer
 
+# временно даунгрейдимся до версии 1, т.к. для 2 нужно поправить имена пакетов
+composer self-update 1.10.16
+
 curl -L https://github.com/webreactor/db-migration/releases/download/1.0.2/db-migration > /usr/local/bin/db-migration
 chmod a+x /usr/local/bin/db-migration
 
@@ -62,9 +48,9 @@ cp ./nginx/nginx.conf      /etc/nginx/nginx.conf
 
 cp ./php/owerride*.ini     /etc/php/5.6/mods-available/
 cp ./php/www.conf          /etc/php/5.6/fpm/pool.d/www.conf
-phpenmod -s cli owerride-php-cli
+phpenmod -v 5.6 -s cli owerride-php-cli
 
-cp ./nxlog/patterndb.xml   /etc/nxlog/patterndb/patterndb.xml
+cp ./nxlog/patterndb.xml   /usr/local/etc/nxlog/patterndb/patterndb.xml
 
 cp ./php/start-php-fpm /usr/local/bin
 cp ./start-nginx-php-nxlog /usr/local/bin
