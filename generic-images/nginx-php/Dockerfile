@@ -1,4 +1,4 @@
-FROM webreactor/ubuntu:14.04.03
+FROM webreactor/ubuntu:20.04.01
 
 # htdocs folder: /var/www
 
